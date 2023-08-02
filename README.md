@@ -2,6 +2,29 @@
 
 [ADR](https://lyz-code.github.io/blue-book/adr/) are short text documents that captures an important architectural decision made along with its context and consequences.
 
+
+[Demo](http://blog.kloven.fr/mkdocs-material-adr/)
+
+## Install
+
+```bash
+pip install mkdocs-material-adr
+# or
+poetry add mkdocs-material-adr
+```
+
+In the `mkdocs.yml` file
+
+```yaml
+theme:
+  # set the name
+  name: mkdocs-material-adr
+
+  # Configuration for the material theme
+  features:
+    - navigation.instant
+```
+
 ## Features
 
 ### ADR Headers

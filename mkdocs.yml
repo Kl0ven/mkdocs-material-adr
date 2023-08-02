@@ -1,0 +1,23 @@
+---
+site_name: Demo
+theme:
+  name: material
+  custom_dir: mkdocs_material_adr
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+site_dir: public
