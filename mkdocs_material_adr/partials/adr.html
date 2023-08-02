@@ -8,8 +8,17 @@
     <dt>Status<span class="colon">:</span></dt>
     <dd><span class="c-pill c-pill-{{ page.meta.adr.status}}">{{ page.meta.adr.status|capitalize }}</span></dd>
 
-    {% if page.meta.adr.status == "superseded" %}
-    <dt>Superseded By<span class="colon">:</span></dt>
-    <dd><a href="../{{ page.meta.adr.superseded_by }}">{{ page.meta.adr.superseded_by }}</a></dd>
+    {% if "material/tags" in config.plugins and page.meta.tags %}
+    <dt>Tags<span class="colon">:</span></dt>
+    <dd>{% include "partials/tags.html" %}</dd>
     {% endif %}
 </dl>
+
+
+
+{% if page.meta.adr.status == "superseded" %}
+<div class="admonition warning">
+    <p class="admonition-title">Superseded !</p>
+    <p>This ADR is superseded by <a href="../{{ page.meta.adr.superseded_by }}">{{ page.meta.adr.superseded_by }}</a> </p>
+</div>
+{% endif %}

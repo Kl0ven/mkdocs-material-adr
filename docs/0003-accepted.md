@@ -4,6 +4,9 @@
         author: Jean-Loup Monnier
         created: 01-Aug-2023
         status:  accepted
+    tags:
+        - tag2
+        - tag3
 ---
 
 ## Context
