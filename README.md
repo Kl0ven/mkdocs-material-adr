@@ -8,7 +8,7 @@
 Information about the ADR are displayed in a header
 Define information about the ADR in the frontmatter.
 
-![Alt text](docs/assets/header.png)
+![Alt text](https://raw.githubusercontent.com/Kl0ven/mkdocs-material-adr/main/docs/assets/header.png)
 
 
 ```md

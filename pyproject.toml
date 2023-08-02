@@ -5,6 +5,8 @@ description = ""
 authors = ["jeanloup.monnier <jean-loup.monnier@spikeelabs.fr>"]
 readme = "README.md"
 packages = [{ include = "mkdocs_material_adr" }]
+license = "Apache-2.0"
+repository = "https://github.com/Kl0ven/mkdocs-material-adr"
 
 [tool.poetry.plugins] # Optional super table
 
