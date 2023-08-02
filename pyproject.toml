@@ -11,7 +11,7 @@ repository = "https://github.com/Kl0ven/mkdocs-material-adr"
 [tool.poetry.plugins] # Optional super table
 
 [tool.poetry.plugins."mkdocs.themes"]
-"mkdocs_material_adr" = "mkdocs_material_adr"
+"mkdocs-material-adr" = "mkdocs_material_adr"
 
 
 [tool.poetry.dependencies]
