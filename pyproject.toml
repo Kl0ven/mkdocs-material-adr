@@ -22,6 +22,11 @@ python = "^3.9"
 mkdocs = "^1.5.1"
 pre-commit = "^3.3.3"
 
+
+[tool.poetry.group.demo.dependencies]
+mkdocs = "^1.5.1"
+mkdocs-material = "^9.1.21"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
