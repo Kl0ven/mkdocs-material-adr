@@ -1,0 +1,15 @@
+<dl class="adr_header">
+    <dt>Author<span class="colon">:</span></dt>
+    <dd>{{ page.meta.adr.author|e }}</dd>
+
+    <dt>Created<span class="colon">:</span></dt>
+    <dd>{{ page.meta.adr.created }}</dd>
+
+    <dt>Status<span class="colon">:</span></dt>
+    <dd><span class="c-pill c-pill-{{ page.meta.adr.status}}">{{ page.meta.adr.status|capitalize }}</span></dd>
+
+    {% if page.meta.adr.status == "superseded" %}
+    <dt>Superseded By<span class="colon">:</span></dt>
+    <dd><a href="../{{ page.meta.adr.superseded_by }}">{{ page.meta.adr.superseded_by }}</a></dd>
+    {% endif %}
+</dl>
