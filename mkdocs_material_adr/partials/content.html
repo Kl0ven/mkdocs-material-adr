@@ -1,4 +1,4 @@
-{% if "material/tags" in config.plugins %}
+{% if "material/tags" in config.plugins and not page.meta.adr %}
 {% include "partials/tags.html" %}
 {% endif %}
 {% include "partials/actions.html" %}

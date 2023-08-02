@@ -21,3 +21,6 @@ theme:
         name: Switch to light mode
 
 site_dir: public
+
+plugins:
+  - material/tags
