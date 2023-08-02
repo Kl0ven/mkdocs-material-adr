@@ -5,8 +5,8 @@
 ## Features
 
 ### ADR Headers
-Information about the ADR are displayed in a header 
-Define information about the ADR in the frontmatter. 
+Information about the ADR are displayed in a header
+Define information about the ADR in the frontmatter.
 
 ![Alt text](docs/assets/header.png)
 
