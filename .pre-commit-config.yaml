@@ -39,7 +39,6 @@ repos:
       - id: end-of-file-fixer
       - id: check-ast
       - id: check-added-large-files
-        exclude: data-parametrization.json.gz
       - id: check-merge-conflict
       - id: pretty-format-json
         args:
@@ -65,13 +64,7 @@ repos:
     rev: "1.7.4"
     hooks:
       - id: bandit
-        files: "^orange/.*"
-
-  - repo: https://github.com/remastr/pre-commit-django-check-migrations
-    rev: v0.1.0
-    hooks:
-      - id: check-migrations-created
-        args: [--exec-command=poetry run python, --manage-path=./manage.py]
+        files: "^mkdocs_material_adr/.*"
 
   - repo: https://github.com/codespell-project/codespell
     rev: "v2.1.0"

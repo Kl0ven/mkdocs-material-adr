@@ -3,12 +3,15 @@ import sys
 from datetime import date, datetime
 from typing import Optional, Union
 
-from mkdocs.commands.build import DuplicateFilter
 from mkdocs.config import config_options as opt
 from mkdocs.config.base import Config
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files
+from mkdocs.structure.nav import Navigation
+from mkdocs.structure.pages import Page
+from mkdocs.utils import DuplicateFilter
+from mkdocs.utils.templates import TemplateContext
 from pydantic import BaseModel, field_validator
 
 DEFAULT_COLORS = {
@@ -42,7 +45,7 @@ class Record(BaseModel):
         return datetime.strptime(value, "%d-%b-%Y").date()
 
     @classmethod
-    def build_from_page(cls, page) -> "Record":
+    def build_from_page(cls, page: Page) -> "Record":
         return cls(
             title=page.title,
             id=_get_id_from_page(page),
@@ -60,10 +63,11 @@ class RecordCollection:
     def add(self, record: Record) -> None:
         self._map[record.id] = record
 
-    def get(self, id):
+    def get(self, id: str) -> Optional[Record]:
+        self._build()
         return self._map.get(id)
 
-    def build(self):
+    def _build(self) -> None:
         for _, record in self._map.items():
             _super = record.superseded_by
             if _super and isinstance(_super, str):
@@ -80,7 +84,8 @@ class RecordCollection:
                 ext.append(r_ext)
             record.extends = ext
 
-    def generate_graph(self, colors):
+    def generate_graph(self, colors: dict[str, str]) -> str:
+        self._build()
         graph = ["```mermaid", "graph TD"]
         for r in self._map.values():
             graph.append(f"{r.id}[{r.title}]")
@@ -88,12 +93,8 @@ class RecordCollection:
             graph.append(f"{r.id}:::mermaid-{r.status}")
             graph.append(f"{r.id}:::mermaid-common")
 
-        for r in self._map.values():
-            if r.superseded_by is None:
-                continue
-            graph.append(f"{r.id} -- Superseded --> {r.superseded_by.id}")
-
-        for r in self._map.values():
+            if r.superseded_by:
+                graph.append(f"{r.id} -- Superseded --> {r.superseded_by.id}")
             for r2 in r.extends:
                 graph.append(f"{r2.id} -- Extended --> {r.id}")
 
@@ -102,17 +103,19 @@ class RecordCollection:
             graph.append("classDef mermaid-common color:#595959;")
 
         graph.append("```")
-        return graph
+        return "\n".join(graph)
 
 
 # adr plugin
 class AdrPlugin(BasePlugin[AdrPluginConfig]):
     # init plugin
-    def on_config(self, config):
+    def on_config(self, config: MkDocsConfig) -> Optional[MkDocsConfig]:
         self.graph_file = None
         self.record_collection = RecordCollection()
 
-    def on_nav(self, nav, config, files):
+    def on_nav(
+        self, nav: Navigation, *, config: MkDocsConfig, files: Files
+    ) -> Optional[Navigation]:
         # append file at the end for one last pass
         path = self.config.graph_file
         if path:
@@ -122,38 +125,37 @@ class AdrPlugin(BasePlugin[AdrPluginConfig]):
                 sys.exit(1)
             files.append(self.graph_file)
 
-    def on_page_markdown(self, markdown, page, config, files):
-        adr_meta = page.meta.get("adr")
-
+    def on_page_markdown(
+        self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files
+    ) -> Optional[str]:
         if page.file == self.graph_file:
-            return self._render_graph(markdown)
+            return markdown.replace(
+                "[GRAPH]",
+                self.record_collection.generate_graph(self.config.mermaid_color),
+            )
 
-        if adr_meta is None:
+        if page.meta.get("adr") is None:
             return
 
         self.record_collection.add(Record.build_from_page(page))
 
-    def on_page_context(self, context, page, config, nav):
-        adr_meta = page.meta.get("adr")
-
-        if adr_meta is None:
+    def on_page_context(
+        self,
+        context: TemplateContext,
+        *,
+        page: Page,
+        config: MkDocsConfig,
+        nav: Navigation,
+    ) -> Optional[TemplateContext]:
+        if page.meta.get("adr") is None:
             return
+
         record = self.record_collection.get(_get_id_from_page(page))
         context["adr"] = record
         return context
 
-    def on_env(self, env, *, config: MkDocsConfig, files: Files):
-        self.record_collection.build()
 
-    def _render_graph(self, markdown):
-        self.record_collection.build()
-        return markdown.replace(
-            "[GRAPH]",
-            "\n".join(self.record_collection.generate_graph(self.config.mermaid_color)),
-        )
-
-
-def _get_id_from_page(page):
+def _get_id_from_page(page: Page) -> str:
     return page.url.replace("/", "")
 
 
