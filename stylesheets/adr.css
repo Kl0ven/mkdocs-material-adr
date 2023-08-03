@@ -88,3 +88,14 @@
 .c-pill-superseded:before {
     background: #ffc400;
 }
+
+
+.adr_header .md-tag {
+    display: inline !important;
+
+}
+
+.adr_header .md-tags {
+    margin-bottom: 0% !important;
+    margin-top: unset !important;
+}

@@ -137,39 +137,6 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
   </nav>
   
@@ -304,6 +271,51 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0006-test/" class="md-nav__link">
+        0006 test
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0007-accepted/" class="md-nav__link">
+        0007 accepted
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0008-all/" class="md-nav__link">
+        0008 all
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -335,13 +347,76 @@
                   
 
 
+  <nav class="md-tags" >
+    
+      
+      
+        <span class="md-tag">tag1</span>
+      
+    
+  </nav>
+
+
+
+
 
 <h1>Home</h1>
 
 
 
 
-
+<p>Index</p>
+<pre class="mermaid"><code>graph TD
+0001-draft[0001 draft]
+click 0001-draft "0001-draft/" _blank
+0001-draft:::mermaid-draft
+0001-draft:::mermaid-common
+0002-proposed[0002 proposed]
+click 0002-proposed "0002-proposed/" _blank
+0002-proposed:::mermaid-proposed
+0002-proposed:::mermaid-common
+0003-accepted[0003 accepted]
+click 0003-accepted "0003-accepted/" _blank
+0003-accepted:::mermaid-accepted
+0003-accepted:::mermaid-common
+0004-rejected[0004 rejected]
+click 0004-rejected "0004-rejected/" _blank
+0004-rejected:::mermaid-rejected
+0004-rejected:::mermaid-common
+0005-superseded[0005 superseded]
+click 0005-superseded "0005-superseded/" _blank
+0005-superseded:::mermaid-superseded
+0005-superseded:::mermaid-common
+0006-test[0006 test]
+click 0006-test "0006-test/" _blank
+0006-test:::mermaid-accepted
+0006-test:::mermaid-common
+0007-accepted[0007 accepted]
+click 0007-accepted "0007-accepted/" _blank
+0007-accepted:::mermaid-accepted
+0007-accepted:::mermaid-common
+0008-all[0008 all]
+click 0008-all "0008-all/" _blank
+0008-all:::mermaid-superseded
+0008-all:::mermaid-common
+0005-superseded -- Superseded --&gt; 0006-test
+0008-all -- Superseded --&gt; 0007-accepted
+0008-all -- Extended --&gt; 0004-rejected
+0003-accepted -- Extended --&gt; 0007-accepted
+0002-proposed -- Extended --&gt; 0007-accepted
+0001-draft -- Extended --&gt; 0008-all
+0002-proposed -- Extended --&gt; 0008-all
+0003-accepted -- Extended --&gt; 0008-all
+classDef mermaid-draft fill:#a3a3a3;
+classDef mermaid-common color:#595959;
+classDef mermaid-proposed fill:#b6d8ff;
+classDef mermaid-common color:#595959;
+classDef mermaid-accepted fill:#b4eda0;
+classDef mermaid-common color:#595959;
+classDef mermaid-rejected fill:#ffd5d1;
+classDef mermaid-common color:#595959;
+classDef mermaid-superseded fill:#ffebb6;
+classDef mermaid-common color:#595959;</code></pre>
 
 
 
