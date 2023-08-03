@@ -1,24 +1,43 @@
 <dl class="adr_header">
     <dt>Author<span class="colon">:</span></dt>
-    <dd>{{ page.meta.adr.author|e }}</dd>
+    <dd>{{ adr.author|e }}</dd>
 
     <dt>Created<span class="colon">:</span></dt>
-    <dd>{{ page.meta.adr.created }}</dd>
+    <dd>{{ adr.created }}</dd>
 
     <dt>Status<span class="colon">:</span></dt>
-    <dd><span class="c-pill c-pill-{{ page.meta.adr.status}}">{{ page.meta.adr.status|capitalize }}</span></dd>
+    <dd><span class="c-pill c-pill-{{ adr.status}}">{{ adr.status|capitalize }}</span></dd>
 
     {% if "material/tags" in config.plugins and page.meta.tags %}
     <dt>Tags<span class="colon">:</span></dt>
     <dd>{% include "partials/tags.html" %}</dd>
     {% endif %}
+
+    {% if adr.base %}
+    <dt>Base for<span class="colon">:</span></dt>
+    <dd>
+        {% for ext in adr.base %}
+        <a href="../{{ ext.url }}"><span class="c-pill c-pill-{{ ext.status}}">{{ ext.title }}</span></a>
+        {% endfor %}
+    </dd>
+    {% endif %}
+
+    {% if adr.extends %}
+    <dt>Extend<span class="colon">:</span></dt>
+    <dd>
+        {% for ext in adr.extends %}
+        <a href="../{{ ext.url }}"><span class="c-pill c-pill-{{ ext.status}}">{{ ext.title }}</span></a>
+        {% endfor %}
+    </dd>
+    {% endif %}
+
 </dl>
 
 
 
-{% if page.meta.adr.status == "superseded" %}
+{% if adr.status == "superseded" %}
 <div class="admonition warning">
     <p class="admonition-title">Superseded !</p>
-    <p>This ADR is superseded by <a href="../{{ page.meta.adr.superseded_by }}">{{ page.meta.adr.superseded_by }}</a> </p>
+    <p>This ADR is superseded by <a href="../{{ adr.superseded_by.url }}"><span class="c-pill c-pill-{{ adr.superseded_by.status}}">{{ adr.superseded_by.title }}</span></a> </p>
 </div>
 {% endif %}

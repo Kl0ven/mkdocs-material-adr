@@ -4,7 +4,7 @@
         author: Jean-Loup Monnier
         created: 01-Aug-2023
         status:  superseded
-        superseded_by: 0003-accepted
+        superseded_by: 0006-test
     tags:
         - tag2
         - tag3

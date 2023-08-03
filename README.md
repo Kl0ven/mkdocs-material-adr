@@ -23,6 +23,10 @@ theme:
   # Configuration for the material theme
   features:
     - navigation.instant
+
+
+plugins:
+  - mkdocs-material-adr/adr
 ```
 
 ## Features
@@ -42,6 +46,9 @@ Define information about the ADR in the frontmatter.
         created: 01-Aug-2023
         status:  draft | proposed | rejected | accepted | superseded
         superseded_by: 0001-test
+        extends:
+            - 0001-first
+            - 0002-second
 ---
 ```
 You can change the colors or add new status using css
@@ -59,4 +66,21 @@ You can change the colors or add new status using css
 ```
 
 ### ADR Graph
-WIP
+Auto generated graph.
+To enable it add `[GRAPH]` in the markdown file you want the graph to be, Then add th following configuration
+
+```yaml
+
+
+plugins:
+  - mkdocs-material-adr/adr:
+      graph_file: index.md # Change this to your file
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+```
+![Alt text](https://raw.githubusercontent.com/Kl0ven/mkdocs-material-adr/main/docs/assets/graph.png)
