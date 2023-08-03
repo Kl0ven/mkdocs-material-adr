@@ -46,7 +46,7 @@ class Record(BaseModel):
         return cls(
             title=page.title,
             id=_get_id_from_page(page),
-            url=page.url,
+            url=page.abs_url,
             tags=page.meta.get("tags", []),
             **page.meta.get("adr"),
         )
