@@ -1,11 +1,12 @@
 ---
-    title: 0004 rejected
+    title: 0007 accepted
     adr:
         author: Jean-Loup Monnier
         created: 01-Aug-2023
-        status:  rejected
+        status:  accepted
         extends:
-            - 0008-all
+            - 0003-accepted
+            - 0002-proposed
     tags:
         - tag2
         - tag3

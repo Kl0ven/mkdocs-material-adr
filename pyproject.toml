@@ -14,8 +14,13 @@ repository = "https://github.com/Kl0ven/mkdocs-material-adr"
 "mkdocs-material-adr" = "mkdocs_material_adr"
 
 
+[tool.poetry.plugins."mkdocs.plugins"]
+"mkdocs-material-adr/adr" = "mkdocs_material_adr.plugins.graph.plugin:AdrPlugin"
+
+
 [tool.poetry.dependencies]
 python = "^3.9"
+pydantic = "^2.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
