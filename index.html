@@ -383,10 +383,12 @@ click 0003-accepted "0003-accepted/" _blank
 click 0004-rejected "0004-rejected/" _blank
 0004-rejected:::mermaid-rejected
 0004-rejected:::mermaid-common
+0008-all -- Extended --&gt; 0004-rejected
 0005-superseded[0005 superseded]
 click 0005-superseded "0005-superseded/" _blank
 0005-superseded:::mermaid-superseded
 0005-superseded:::mermaid-common
+0005-superseded -- Superseded --&gt; 0006-test
 0006-test[0006 test]
 click 0006-test "0006-test/" _blank
 0006-test:::mermaid-accepted
@@ -395,15 +397,13 @@ click 0006-test "0006-test/" _blank
 click 0007-accepted "0007-accepted/" _blank
 0007-accepted:::mermaid-accepted
 0007-accepted:::mermaid-common
+0003-accepted -- Extended --&gt; 0007-accepted
+0002-proposed -- Extended --&gt; 0007-accepted
 0008-all[0008 all]
 click 0008-all "0008-all/" _blank
 0008-all:::mermaid-superseded
 0008-all:::mermaid-common
-0005-superseded -- Superseded --&gt; 0006-test
 0008-all -- Superseded --&gt; 0007-accepted
-0008-all -- Extended --&gt; 0004-rejected
-0003-accepted -- Extended --&gt; 0007-accepted
-0002-proposed -- Extended --&gt; 0007-accepted
 0001-draft -- Extended --&gt; 0008-all
 0002-proposed -- Extended --&gt; 0008-all
 0003-accepted -- Extended --&gt; 0008-all
