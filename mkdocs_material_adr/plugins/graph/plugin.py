@@ -123,6 +123,7 @@ class AdrPlugin(BasePlugin[AdrPluginConfig]):
             if not self.graph_file:
                 log.error(f"Graph file '{path}' does not exist.")
                 sys.exit(1)
+            files.remove(self.graph_file)
             files.append(self.graph_file)
 
     def on_page_markdown(
