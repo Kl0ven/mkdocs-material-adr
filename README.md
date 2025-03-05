@@ -27,6 +27,8 @@ theme:
 
 plugins:
   - mkdocs-material-adr/adr
+  - material/search # Note: all material plugin should be namespaced for them to work
+
 ```
 
 ## Features
