@@ -1,4 +1,5 @@
 import logging
+import re
 import sys
 from datetime import date, datetime
 from typing import Optional, Union
@@ -84,9 +85,10 @@ class RecordCollection:
                 ext.append(r_ext)
             record.extends = ext
 
-    def generate_graph(self, colors: dict[str, str]) -> str:
+    def generate_graph(self, colors: dict[str, str], args: dict) -> str:
         self._build()
-        graph = ["```mermaid", "graph TD"]
+        direction = args.get("direction", "TD")
+        graph = ["```mermaid", f"graph {direction}"]
         for r in self._map.values():
             graph.append(f"{r.id}[{r.title}]")
             graph.append(f'click {r.id} "{r.url}" _blank')
@@ -130,9 +132,22 @@ class AdrPlugin(BasePlugin[AdrPluginConfig]):
         self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files
     ) -> Optional[str]:
         if page.file == self.graph_file:
+            match = re.search(r"\[GRAPH(.*)\]", markdown)
+
+            if not match:
+                log.error("Graph file does not contain [GRAPH .*] tag.")
+
+            args = dict(
+                [
+                    arg.split("=")
+                    for group in match.groups()
+                    for arg in group.strip().split(" ")
+                ]
+            )
+
             return markdown.replace(
-                "[GRAPH]",
-                self.record_collection.generate_graph(self.config.mermaid_color),
+                match.group(),
+                self.record_collection.generate_graph(self.config.mermaid_color, args),
             )
 
         if page.meta.get("adr") is None:
