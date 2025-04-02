@@ -2,7 +2,6 @@
 
 [ADR](https://lyz-code.github.io/blue-book/adr/) are short text documents that captures an important architectural decision made along with its context and consequences.
 
-
 [Demo](http://blog.kloven.fr/mkdocs-material-adr/)
 
 ## Install
@@ -68,8 +67,11 @@ You can change the colors or add new status using css
 ```
 
 ### ADR Graph
+
 Auto generated graph.
 To enable it add `[GRAPH]` in the markdown file you want the graph to be, Then add th following configuration
+
+You can also override the graph direction with `[GRAPH direction=LR]` (default to `TD`).
 
 ```yaml
 

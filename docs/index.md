@@ -6,4 +6,4 @@ tags:
 Index
 
 
-[GRAPH]
+[GRAPH direction=LR subgraph_grouping=any]
