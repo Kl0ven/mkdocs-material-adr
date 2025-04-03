@@ -22,15 +22,14 @@ theme:
 
 site_dir: public
 
-
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
-      - name: mermaid
-        class: mermaid
-        format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 plugins:
   - material/tags:
   - mkdocs-material-adr/adr:
-      graph_file: index.md
+      graph_file: adr/sub/index.md
