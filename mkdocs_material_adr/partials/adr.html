@@ -17,7 +17,7 @@
     <dt>Base for<span class="colon">:</span></dt>
     <dd>
         {% for ext in adr.base %}
-        <a href="../{{ ext.url }}"><span class="c-pill c-pill-{{ ext.status}}">{{ ext.title }}</span></a>
+        <a href="{{ ext.url }}"><span class="c-pill c-pill-{{ ext.status}}">{{ ext.title }}</span></a>
         {% endfor %}
     </dd>
     {% endif %}
@@ -26,7 +26,7 @@
     <dt>Extend<span class="colon">:</span></dt>
     <dd>
         {% for ext in adr.extends %}
-        <a href="../{{ ext.url }}"><span class="c-pill c-pill-{{ ext.status}}">{{ ext.title }}</span></a>
+        <a href="{{ ext.url }}"><span class="c-pill c-pill-{{ ext.status}}">{{ ext.title }}</span></a>
         {% endfor %}
     </dd>
     {% endif %}
@@ -38,6 +38,6 @@
 {% if adr.status == "superseded" %}
 <div class="admonition warning">
     <p class="admonition-title">Superseded !</p>
-    <p>This ADR is superseded by <a href="../{{ adr.superseded_by.url }}"><span class="c-pill c-pill-{{ adr.superseded_by.status}}">{{ adr.superseded_by.title }}</span></a> </p>
+    <p>This ADR is superseded by <a href="{{ adr.superseded_by.url }}"><span class="c-pill c-pill-{{ adr.superseded_by.status}}">{{ adr.superseded_by.title }}</span></a> </p>
 </div>
 {% endif %}
