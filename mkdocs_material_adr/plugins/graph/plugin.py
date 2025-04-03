@@ -142,6 +142,7 @@ class AdrPlugin(BasePlugin[AdrPluginConfig]):
                     arg.split("=")
                     for group in match.groups()
                     for arg in group.strip().split(" ")
+                    if arg != ""
                 ]
             )
 
